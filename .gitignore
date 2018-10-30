@@ -1,1 +1,65 @@
-/vendor/
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+dist
+bower_components
+node_modules
+npm-debug.log
+vendor
+
+############
+## IDEs
+############
+
+*.pydevproject
+.project
+.metadata
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+.cproject
+.buildpath
+nbproject/
+
+############
+## OSes
+############
+
+[Tt]humbs.db
+[Dd]esktop.ini
+*.DS_store
+.DS_store?
+
+############
+## Misc
+############
+
+bin/
+tmp/
+*.tmp
+*.bak
+*.log
+*.[Cc]ache
+*.cpr
+*.orig
+*.php.in
+.idea/
+temp/
+._*
+.Trashes
+
+.svn
+
+.phpintel/
+*.codekit
+*.scssc
+.sass-cache/
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
+assets/styles/common/_sprite.scss
+assets/images/sprite.png
