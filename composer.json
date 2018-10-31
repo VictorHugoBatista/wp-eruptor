@@ -19,5 +19,8 @@
             "victorhugobatista\\WpEruptor\\": "app/"
         }
     },    
-    "require": {}
+    "require": {
+        "brain/cortex": "~1.0.0"
+    },
+    "minimum-stability": "dev"
 }
