@@ -15,6 +15,9 @@
         }
     ],
     "autoload": {
+        "files": [
+            "lib/routes.php"
+        ],
         "psr-4": {
             "victorhugobatista\\WpEruptor\\": "app/"
         }
