@@ -22,7 +22,7 @@ class PostTypeRoute
             return;
         }
         $this->cortexRoutes->addRoute(new QueryRoute(
-            "{$this->postType->rewrite['slug']}/{post-name}/{single-child-name}",
+            "{$this->postType->rewrite['slug']}/{postName}/{singleChildName}",
             function (array $matches) {
                 echo 'child page';
                 die();
