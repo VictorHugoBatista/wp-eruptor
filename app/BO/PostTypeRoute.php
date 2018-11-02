@@ -34,9 +34,13 @@ class PostTypeRoute
                 if (! $queryPost->postExists()) {
                     new TemplateRenderer();
                 }
+                $postSingle = $queryPost->getPost();
                 new TemplateRenderer(
                     $postTypeSlug,
-                    $matches['singleChildName']
+                    $matches['singleChildName'],
+                    [
+                        'post-id' => $postSingle->ID,
+                    ]
                 );
                 die();
             }

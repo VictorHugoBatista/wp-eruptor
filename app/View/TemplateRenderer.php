@@ -3,8 +3,11 @@ namespace victorhugobatista\WpEruptor\View;
 
 class TemplateRenderer
 {
-    public function __construct($template = '404', $postTypeName = '')
+    private $pageData;
+
+    public function __construct($template = '404', $postTypeName = '', $pageData = [])
     {
+        $this->pageData = $pageData;
         ob_start();
         get_header();
         $this->getTemplateContent($template, $postTypeName);
@@ -23,6 +26,7 @@ class TemplateRenderer
             if (! file_exists($templateToInclude)) {
                 $this->get404Template();
             } else {
+                $pageData = $this->pageData;
                 include $templateToInclude;
             }
         }

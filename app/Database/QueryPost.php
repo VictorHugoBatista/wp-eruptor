@@ -20,7 +20,16 @@ class QueryPost
         ]);
     }
 
-    public function postExists() {
+    public function postExists()
+    {
         return ! empty($this->query->posts);
+    }
+
+    public function getPost()
+    {
+        if (empty($this->query->posts)) {
+            return false;
+        }
+        return $this->query->posts[0];
     }
 }
