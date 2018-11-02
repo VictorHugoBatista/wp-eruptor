@@ -4,7 +4,7 @@ namespace victorhugobatista\WpEruptor\Database;
 use WP_Query;
 
 /**
- * Ressponsible for get one post passing the post type
+ * Responsible for get one post passing the post type
  * name and the post name on constructor.
  */
 class QueryPost
@@ -13,7 +13,7 @@ class QueryPost
     private $postName;
 
     /**
-     * Quere generated on constructor.
+     * Query generated on constructor.
      *
      * @var WP_Query
      */
