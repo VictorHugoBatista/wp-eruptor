@@ -42,7 +42,7 @@ class PostTypeRoute
 
     /**
      * Add route for one specifc post type passed through the constructor.
-     * If the parent post not exists, send to 404 template.
+     * If the parent post is not published or not exists, send to 404 template.
      */
     private function addRoute()
     {

@@ -22,6 +22,7 @@ class QueryPost
     /**
      * Do an WP_Query by one post with the post type
      * name and the post name pass to a property.
+     * Get only published posts.
      *
      * @param string $postTypeName Post type name, showed on single page slugs.
      * @param string $postName Post name, showed on single page slugs.
@@ -34,6 +35,7 @@ class QueryPost
             'post_type' => $postTypeName,
             'name' => $postName,
             'posts_per_page' => 1,
+            'post_status' => 'publish',
         ]);
     }
 
