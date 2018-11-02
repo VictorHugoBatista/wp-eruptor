@@ -3,19 +3,24 @@ namespace victorhugobatista\WpEruptor\View;
 
 class Templater
 {
-    public function __construct($template = '404')
+    public function __construct($template = '404', $postTypeName = '')
     {
         ob_start();
         get_header();
-        $this->getTemplateContent($template);
+        $this->getTemplateContent($template, $postTypeName);
         get_footer();
         echo ob_get_clean();
     }
 
-    private function getTemplateContent($template)
+    private function getTemplateContent($template, $postTypeName)
     {
         if ('404' === $template) {
             $this->get404Template();
+        } else {
+            $themePath = get_template_directory();
+            $templateToInclude =
+                "{$themePath}/single-page-children/single-{$template}/{$postTypeName}.php";
+            include $templateToInclude;
         }
     }
 

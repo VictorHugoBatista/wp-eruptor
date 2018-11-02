@@ -23,9 +23,10 @@ class PostTypeRoute
         if (! $this->postType->rewrite)  {
             return;
         }
+        $postTypeSlug = $this->postType->rewrite['slug'];
         $this->cortexRoutes->addRoute(new QueryRoute(
-            "{$this->postType->rewrite['slug']}/{postName}/{singleChildName}",
-            function (array $matches) {
+            "{$postTypeSlug}/{postName}/{singleChildName}",
+            function (array $matches) use ($postTypeSlug) {
                 $queryPost = new QueryPost(
                     $this->postType->name,
                     $matches['postName']
@@ -33,6 +34,10 @@ class PostTypeRoute
                 if (! $queryPost->postExists()) {
                     new Templater();
                 }
+                new Templater(
+                    $postTypeSlug,
+                    $matches['singleChildName']
+                );
                 die();
             }
         ));
