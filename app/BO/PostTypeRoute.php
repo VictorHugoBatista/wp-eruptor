@@ -4,6 +4,7 @@ namespace victorhugobatista\WpEruptor\BO;
 use Brain\Cortex\Route\RouteCollectionInterface;
 use Brain\Cortex\Route\QueryRoute;
 use victorhugobatista\WpEruptor\Database\QueryPost;
+use victorhugobatista\WpEruptor\View\Templater;
 
 class PostTypeRoute
 {
@@ -30,19 +31,10 @@ class PostTypeRoute
                     $matches['postName']
                 );
                 if (! $queryPost->postExists()) {
-                    $this->goTo404();
+                    new Templater();
                 }
                 die();
             }
         ));
-    }
-
-    private function goTo404()
-    {
-        global $wp_query;
-        $wp_query->set_404();
-        status_header( 404 );
-        get_template_part( 404 );
-        die();
     }
 } 
