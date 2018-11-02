@@ -17,7 +17,7 @@ class Eruptor
      * @todo Receive the root directory to read the templates.
      * @todo Receive what post types have to be added to routes.
      *
-     * @param boolean $bootCortex Initialize the cortex feature if true (default)
+     * @param boolean $bootCortex Initialize the cortex feature if true (default).
      */
     public function __construct($bootCortex = true)
     {
