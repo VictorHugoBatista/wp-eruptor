@@ -1,0 +1,26 @@
+{
+    "name": "victorhugobatista/wp-eruptor",
+    "description": "Extend your single pages like lava in the water with less setup",
+    "keywords": [
+        "wordpress",
+        "single page",
+        "fast route",
+        "pretty permalink"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Hugo Batista",
+            "email": "vct.bta@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "victorhugobatista\\WpEruptor\\": "app/"
+        }
+    },    
+    "require": {
+        "brain/cortex": "~1.0.0"
+    },
+    "minimum-stability": "dev"
+}
