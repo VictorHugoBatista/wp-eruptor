@@ -9,9 +9,6 @@ use WP_Query;
  */
 class QueryPost
 {
-    private $postTypeName;
-    private $postName;
-
     /**
      * Query generated on constructor.
      *
@@ -29,8 +26,6 @@ class QueryPost
      */
     public function __construct($postTypeName, $postName)
     {
-        $this->postTypeName = $postTypeName;
-        $this->postName = $postName;
         $this->query = new WP_Query([
             'post_type' => $postTypeName,
             'name' => $postName,
