@@ -20,7 +20,11 @@ class Templater
             $themePath = get_template_directory();
             $templateToInclude =
                 "{$themePath}/single-page-children/single-{$template}/{$postTypeName}.php";
-            include $templateToInclude;
+            if (! file_exists($templateToInclude)) {
+                $this->get404Template();
+            } else {
+                include $templateToInclude;
+            }
         }
     }
 
