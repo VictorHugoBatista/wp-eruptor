@@ -7,9 +7,11 @@ use victorhugobatista\WpEruptor\BO\PostTypeRoute;
 
 class Eruptor
 {
-    public function __construct()
+    public function __construct($bootCortex = true)
     {
-        Cortex::boot();
+        if ($bootCortex) {
+            Cortex::boot();
+        }
 
         add_action('cortex.routes', function(RouteCollectionInterface $routes) {
             $allPostTypes = get_post_types([], 'objects');
