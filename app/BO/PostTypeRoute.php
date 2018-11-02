@@ -4,7 +4,7 @@ namespace victorhugobatista\WpEruptor\BO;
 use Brain\Cortex\Route\RouteCollectionInterface;
 use Brain\Cortex\Route\QueryRoute;
 use victorhugobatista\WpEruptor\Database\QueryPost;
-use victorhugobatista\WpEruptor\View\Templater;
+use victorhugobatista\WpEruptor\View\TemplateRenderer;
 
 class PostTypeRoute
 {
@@ -32,9 +32,9 @@ class PostTypeRoute
                     $matches['postName']
                 );
                 if (! $queryPost->postExists()) {
-                    new Templater();
+                    new TemplateRenderer();
                 }
-                new Templater(
+                new TemplateRenderer(
                     $postTypeSlug,
                     $matches['singleChildName']
                 );

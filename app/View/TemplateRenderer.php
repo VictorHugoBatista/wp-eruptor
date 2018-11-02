@@ -1,7 +1,7 @@
 <?php
 namespace victorhugobatista\WpEruptor\View;
 
-class Templater
+class TemplateRenderer
 {
     public function __construct($template = '404', $postTypeName = '')
     {
