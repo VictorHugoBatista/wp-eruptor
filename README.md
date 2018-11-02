@@ -2,6 +2,10 @@
 Extend your single pages like lava in the water with less setup
 
 ## Simple usage
+Add the lib by composer with the command below:
+```shell
+composer require victorhugobatista/wp-eruptor 
+```
 Add the code below to your functions.
 ```php
 use victorhugobatista\WpEruptor\Eruptor;
