@@ -5,6 +5,7 @@ use Brain\Cortex\Route\RouteCollectionInterface;
 use Brain\Cortex\Route\QueryRoute;
 use victorhugobatista\WpEruptor\Database\QueryPost;
 use victorhugobatista\WpEruptor\View\TemplateRenderer;
+use WP_Post_Type;
 
 /**
  * Responsible by post type route creation.
@@ -32,7 +33,7 @@ class PostTypeRoute
      * @param WP_Post_Type $postType Post type to initialize route.
      * @param RouteCollectionInterface $routes Object of 'cortex.routes' filter.
      */
-    public function __construct($postType, RouteCollectionInterface $routes)
+    public function __construct(WP_Post_Type $postType, RouteCollectionInterface $routes)
     {
         $this->postType = $postType;
         $this->cortexRoutes = $routes;
