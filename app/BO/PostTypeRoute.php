@@ -3,6 +3,7 @@ namespace victorhugobatista\WpEruptor\BO;
 
 use Brain\Cortex\Route\RouteCollectionInterface;
 use Brain\Cortex\Route\QueryRoute;
+use victorhugobatista\WpEruptor\Database\QueryPost;
 
 class PostTypeRoute
 {
@@ -24,7 +25,10 @@ class PostTypeRoute
         $this->cortexRoutes->addRoute(new QueryRoute(
             "{$this->postType->rewrite['slug']}/{postName}/{singleChildName}",
             function (array $matches) {
-                echo 'child page';
+                $queryPost = new QueryPost(
+                    $this->postType->name,
+                    $matches['postName']
+                );
                 die();
             }
         ));
