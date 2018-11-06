@@ -10,6 +10,13 @@ use WP_Post_Type;
 /**
  * Responsible by post type route creation.
  * Have to be called on 'cortex.routes' filter.
+ * 
+ * Hooks added on this class:
+ * Allow the data injection to template filtered by many ways:
+ *  - 'eruptor/data'
+ *  - 'eruptor/data/type/{post-type-slug}'
+ *  - 'eruptor/data/post/{parent-single-post-id}'
+ *  - 'eruptor/data/template/{template-slug}'
  */
 class PostTypeRoute
 {
@@ -74,6 +81,14 @@ class PostTypeRoute
         ));
     }
     
+    /**
+     * Pass the data through an battery of filters, allowing the
+     * injection of the data to the templates.
+     *
+     * @param int $postId Id of the parent single.
+     * @param string $template Name of invoked template.
+     * @return array
+     */
     private function makeDataArray($postId, $template)
     {
         $data = ['post-id' => $postId];
