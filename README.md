@@ -29,8 +29,29 @@ The post id of parent single page will be available in the templates as:
 <?php echo $pageData['post-id'] ?>
 ```
 
+## Hooks reference
+Hook | Description
+---- | -----------
+**eruptor/data** | Inject data to all templates
+**eruptor/data/type/{post-type-slug}** | Inject data to templates children of posts of an post type by slug
+**eruptor/data/post/{parent-single-post-id}** | Inject data to templates children of an specific post by id
+**eruptor/data/template/{template-slug}** | Inject data to one template by name
+
+### Example for eruptor/data* hook:
+**/!\ The wildcard * can be replace with any eruptor/data filters above /!\\**
+```php
+add_filter('eruptor/data*', function($data) {
+  return array_merge($data, [
+    'new-data' => 'new data added to template',
+  ]);
+});
+```
+The new data will be available on template on **$pageData** array:
+```php
+<?php echo $pageData['new-data'] ?>
+```
+
 ## Next steps (from @todo comments added to the code)
  * To receive the root directory to read the templates on main class.
  * To receive what post types have to be added to routes on main class.
  * Add filters to allow the modification of header, content and footer by post type, post name and template name.
- * Add filters to inject data to the templates, by post type, post name and template name.
