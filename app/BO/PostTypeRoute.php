@@ -10,6 +10,13 @@ use WP_Post_Type;
 /**
  * Responsible by post type route creation.
  * Have to be called on 'cortex.routes' filter.
+ * 
+ * Hooks added on this class:
+ * Allow the data injection to template filtered by many ways:
+ *  - 'eruptor/data'
+ *  - 'eruptor/data/type/{post-type-slug}'
+ *  - 'eruptor/data/post/{parent-single-post-id}'
+ *  - 'eruptor/data/template/{template-slug}'
  */
 class PostTypeRoute
 {
@@ -64,12 +71,31 @@ class PostTypeRoute
                 new TemplateRenderer(
                     $postTypeSlug,
                     $matches['singleChildName'],
-                    [
-                        'post-id' => $postSingle->ID,
-                    ]
+                    $this->makeDataArray(
+                        $postSingle->ID,
+                        $matches['singleChildName']
+                    )
                 );
                 die();
             }
         ));
+    }
+    
+    /**
+     * Pass the data through an battery of filters, allowing the
+     * injection of the data to the templates.
+     *
+     * @param int $postId Id of the parent single.
+     * @param string $template Name of invoked template.
+     * @return array
+     */
+    private function makeDataArray($postId, $template)
+    {
+        $data = ['post-id' => $postId];
+        $dataToReturn = apply_filters('eruptor/data', $data);
+        $dataToReturn = apply_filters("eruptor/data/type/{$this->postType->rewrite['slug']}", $dataToReturn);
+        $dataToReturn = apply_filters("eruptor/data/post/{$data['post-id']}", $dataToReturn);
+        $dataToReturn = apply_filters("eruptor/data/template/{$template}", $dataToReturn);
+        return $dataToReturn;
     }
 } 
