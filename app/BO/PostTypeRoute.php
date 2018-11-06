@@ -66,15 +66,19 @@ class PostTypeRoute
                     $matches['singleChildName'],
                     $this->makeDataArray([
                         'post-id' => $postSingle->ID,
-                    ])
+                    ], $matches['singleChildName'])
                 );
                 die();
             }
         ));
     }
     
-    private function makeDataArray($data)
+    private function makeDataArray($data, $template)
     {
-        return apply_filters('eruptor/data', $data);
+        $dataToReturn = apply_filters('eruptor/data', $data);
+        $dataToReturn = apply_filters("eruptor/data/type/{$this->postType->rewrite['slug']}", $dataToReturn);
+        $dataToReturn = apply_filters("eruptor/data/post/{$data['post-id']}", $dataToReturn);
+        $dataToReturn = apply_filters("eruptor/data/template/{$template}", $dataToReturn);
+        return $dataToReturn;
     }
 } 
