@@ -64,12 +64,17 @@ class PostTypeRoute
                 new TemplateRenderer(
                     $postTypeSlug,
                     $matches['singleChildName'],
-                    [
+                    $this->makeDataArray([
                         'post-id' => $postSingle->ID,
-                    ]
+                    ])
                 );
                 die();
             }
         ));
+    }
+    
+    private function makeDataArray($data)
+    {
+        return apply_filters('eruptor/data', $data);
     }
 } 
