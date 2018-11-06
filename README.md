@@ -1,6 +1,8 @@
 # wp-eruptor
 Extend your single pages like lava in the water with less setup
 
+![screenshot](screenshot.jpg)
+
 ## Simple usage
 Add the lib by composer with the command below:
 ```shell
