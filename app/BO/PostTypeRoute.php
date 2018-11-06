@@ -64,17 +64,19 @@ class PostTypeRoute
                 new TemplateRenderer(
                     $postTypeSlug,
                     $matches['singleChildName'],
-                    $this->makeDataArray([
-                        'post-id' => $postSingle->ID,
-                    ], $matches['singleChildName'])
+                    $this->makeDataArray(
+                        $postSingle->ID,
+                        $matches['singleChildName']
+                    )
                 );
                 die();
             }
         ));
     }
     
-    private function makeDataArray($data, $template)
+    private function makeDataArray($postId, $template)
     {
+        $data = ['post-id' => $postId];
         $dataToReturn = apply_filters('eruptor/data', $data);
         $dataToReturn = apply_filters("eruptor/data/type/{$this->postType->rewrite['slug']}", $dataToReturn);
         $dataToReturn = apply_filters("eruptor/data/post/{$data['post-id']}", $dataToReturn);
