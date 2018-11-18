@@ -15,19 +15,25 @@ class TemplateRenderer
      */
     private $pageData;
 
+    /**
+     * Root directory where the templates are loaded.
+     *
+     * @var string
+     */
     private $templateRootDirectory;
 
     /**
-     * Receive the template and post type names and invokes the
-     * template with header e footer.
+     * Receive the template and post type names and invokes the template with header e footer.
      * If receive '404' as template name, load the 404 page.
      * Do the same if the template file not exists.
+     * Receive the root directory where the templates are loaded. Defaults to <active-theme-dir>/single-page-children.
      *
      * @todo Add filters to allow the modification of header, content and footer by post type, post name and template name.
      *
      * @param string $template Template name. Default to '404'.
      * @param string $postTypeName Post type name, used to find the template path.
      * @param array $pageData Data make available on template.
+     * @param boolean $templateRootDirectory Defaults to <active-theme-dir>/single-page-children.
      */
     public function __construct($template = '404', $postTypeName = '', $pageData = [], $templateRootDirectory = '')
     {
@@ -61,7 +67,6 @@ class TemplateRenderer
             }
             $templateToInclude =
                 "{$templatePath}/single-{$template}/{$postTypeName}.php";
-            var_dump($templateToInclude);
             if (! file_exists($templateToInclude)) {
                 $this->get404Template();
             } else {

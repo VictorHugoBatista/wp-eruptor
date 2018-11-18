@@ -34,6 +34,11 @@ class PostTypeRoute
      */
     private $cortexRoutes;
 
+    /**
+     * Root directory where the templates are loaded.
+     *
+     * @var string
+     */
     private $templateRootDirectory;
 
     /**
@@ -41,6 +46,7 @@ class PostTypeRoute
      *
      * @param WP_Post_Type $postType Post type to initialize route.
      * @param RouteCollectionInterface $routes Object of 'cortex.routes' filter.
+     * @param boolean $templateRootDirectory Defaults to <active-theme-dir>/single-page-children.
      */
     public function __construct(WP_Post_Type $postType, RouteCollectionInterface $routes, $templateRootDirectory = '')
     {
