@@ -10,7 +10,7 @@ use WP_Post_Type;
 /**
  * Responsible by post type route creation.
  * Have to be called on 'cortex.routes' filter.
- * 
+ *
  * Hooks added on this class:
  * Allow the data injection to template filtered by many ways:
  *  - 'eruptor/data'
@@ -34,16 +34,19 @@ class PostTypeRoute
      */
     private $cortexRoutes;
 
+    private $templateRootDirectory;
+
     /**
      * Initialize route for a specific post type.
      *
      * @param WP_Post_Type $postType Post type to initialize route.
      * @param RouteCollectionInterface $routes Object of 'cortex.routes' filter.
      */
-    public function __construct(WP_Post_Type $postType, RouteCollectionInterface $routes)
+    public function __construct(WP_Post_Type $postType, RouteCollectionInterface $routes, $templateRootDirectory = '')
     {
         $this->postType = $postType;
-        $this->cortexRoutes = $routes;
+            $this->cortexRoutes = $routes;
+        $this->templateRootDirectory = $templateRootDirectory;
         $this->addRoute();
     }
 
@@ -74,13 +77,14 @@ class PostTypeRoute
                     $this->makeDataArray(
                         $postSingle->ID,
                         $matches['singleChildName']
-                    )
+                    ),
+                    $this->templateRootDirectory
                 );
                 die();
             }
         ));
     }
-    
+
     /**
      * Pass the data through an battery of filters, allowing the
      * injection of the data to the templates.
@@ -98,4 +102,4 @@ class PostTypeRoute
         $dataToReturn = apply_filters("eruptor/data/template/{$template}", $dataToReturn);
         return $dataToReturn;
     }
-} 
+}
