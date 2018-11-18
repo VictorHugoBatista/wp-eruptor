@@ -6,14 +6,24 @@ Extend your single pages like lava in the water with less setup
 ## Simple usage
 Add the lib by composer with the command below:
 ```shell
-composer require victorhugobatista/wp-eruptor 
+composer require victorhugobatista/wp-eruptor
 ```
-Add the code below to your functions.
+Add the code below to your functions. Where the template files will be loaded by default at active-theme-dir/single-page-children.
 ```php
 use victorhugobatista\WpEruptor\Eruptor;
 Eruptor::initialize();
 ```
+You can pass the root directory where the templates will be loaded as the example below:
+```php
+use victorhugobatista\WpEruptor\Eruptor;
 
+$themePath = get_template_directory();
+$templateToInclude = "{$themePath}/my-custom-template-dir";
+
+Eruptor::initialize($templateToInclude);
+```
+
+## Template files
 The file structure to place the templates must be like below:
  * Template root directory (**by now, the template folder must be placed here**)
    * single-page-children (**by now, this name can't be changed**)
@@ -54,6 +64,5 @@ The new data will be available on template on **$pageData** array:
 ```
 
 ## Next steps (from @todo comments added to the code)
- * To receive the root directory to read the templates on main class.
  * To receive what post types have to be added to routes on main class.
  * Add filters to allow the modification of header, content and footer by post type, post name and template name.
