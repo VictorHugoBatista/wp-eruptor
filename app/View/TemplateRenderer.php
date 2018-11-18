@@ -16,20 +16,29 @@ class TemplateRenderer
     private $pageData;
 
     /**
-     * Receive the template and post type names and invokes the
-     * template with header e footer.
+     * Root directory where the templates are loaded.
+     *
+     * @var string
+     */
+    private $templateRootDirectory;
+
+    /**
+     * Receive the template and post type names and invokes the template with header e footer.
      * If receive '404' as template name, load the 404 page.
      * Do the same if the template file not exists.
+     * Receive the root directory where the templates are loaded. Defaults to <active-theme-dir>/single-page-children.
      *
      * @todo Add filters to allow the modification of header, content and footer by post type, post name and template name.
-     * 
+     *
      * @param string $template Template name. Default to '404'.
      * @param string $postTypeName Post type name, used to find the template path.
      * @param array $pageData Data make available on template.
+     * @param boolean $templateRootDirectory Defaults to <active-theme-dir>/single-page-children.
      */
-    public function __construct($template = '404', $postTypeName = '', $pageData = [])
+    public function __construct($template = '404', $postTypeName = '', $pageData = [], $templateRootDirectory = '')
     {
         $this->pageData = $pageData;
+        $this->templateRootDirectory = $templateRootDirectory;
         ob_start();
         get_header();
         $this->getTemplateContent($template, $postTypeName);
@@ -49,9 +58,15 @@ class TemplateRenderer
         if ('404' === $template) {
             $this->get404Template();
         } else {
-            $themePath = get_template_directory();
+            if ('' === $this->templateRootDirectory) {
+                $themePath = get_template_directory();
+                $templatePath =
+                    "{$themePath}/single-page-children";
+            } else {
+                $templatePath = $this->templateRootDirectory;
+            }
             $templateToInclude =
-                "{$themePath}/single-page-children/single-{$template}/{$postTypeName}.php";
+                "{$templatePath}/single-{$template}/{$postTypeName}.php";
             if (! file_exists($templateToInclude)) {
                 $this->get404Template();
             } else {
